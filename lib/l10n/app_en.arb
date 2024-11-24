@@ -47,5 +47,9 @@
   "myList" : "My List",
   "other" : "Other",
   "updateApp" : "Update App",
-  "whoAreWe" : "Who Are We ?"
+  "aboutUs" : "About Us ?",
+  "aboutUsDec" : "We are a team of passionate developers dedicated to creating amazing applications. Our mission is to provide high-quality software solutions that meet the needs of our users.",
+  "ourTeam" : "Our Team",
+  "ourTeamDec" : "Our team consists of experienced developers, designers, and project managers who work together to deliver the best possible products.",
+  "contactUs" : "Contact Us"
 }

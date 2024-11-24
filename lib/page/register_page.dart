@@ -1,5 +1,6 @@
 import 'package:book_akmar/page/login_page.dart';
 import 'package:book_akmar/page/welcome_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../shared/constants.dart';
@@ -55,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 33,
                 ),
-                TextField(
+                TextFormField(
                   keyboardType: TextInputType.text,
                   obscureText: false,
                   decoration: decorationTextFiled.copyWith(
@@ -67,7 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 33,
                 ),
 
-                TextField(
+                TextFormField(
                   keyboardType: TextInputType.text,
                   obscureText: false,
                   decoration: decorationTextFiled.copyWith(
@@ -82,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
           
                 //Email
-                TextField(
+                TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: decorationTextFiled.copyWith(
                     hintText: AppLocalizations.of(context)!.enterEmail,
@@ -90,14 +91,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 33),
-                TextField(
+                TextFormField(
                   keyboardType: TextInputType.text,
                   decoration: decorationTextFiled.copyWith(
                     hintText: AppLocalizations.of(context)!.password,
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
                       ),
                       onPressed: _togglePasswordVisibility,
                     ),
@@ -143,31 +144,33 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 33,
                 ),
-          
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //have account
-                     Text(AppLocalizations.of(context)!.haveAccount,
-                        style: TextStyle(fontSize: 15, color: Color(0xff283E50))),
-          
-                    //Sign Up
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
-                      },
-                      child:  Text(
-                        AppLocalizations.of(context)!.signIn,
-                        style: TextStyle(color: Colors.blue, fontSize: 15),
+
+                Text.rich(
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: AppLocalizations.of(context)!.haveAccount,
                       ),
-                    ),
-                  ],
+                      TextSpan(text: ' '),
+                      TextSpan(
+                          text: AppLocalizations.of(context)!.signIn,
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            })
+                    ],
+                  ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
           
                 Row(

@@ -1,7 +1,5 @@
+import 'package:book_akmar/models/whoarewe_page.dart';
 import 'package:book_akmar/page/login_page.dart';
-import 'package:book_akmar/page/register_page.dart';
-import 'package:book_akmar/page/settings_page.dart';
-import 'package:book_akmar/page/splash_screen.dart';
 import 'package:book_akmar/widget/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -34,7 +32,7 @@ class _MyAppState extends State<MyApp> {
         supportedLocales: AppLocalizations.supportedLocales,
         locale: Locale('ar'),
         title: 'Akmar',
-        home: SettingPage(),
+        home: WhoAreWePage(),
         theme: Provider.of<ThemeProvider>(context).themeData
     );
   }

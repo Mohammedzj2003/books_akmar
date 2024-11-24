@@ -55,24 +55,24 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 33,
                 ),
-                TextField(
+                TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: decorationTextFiled.copyWith(
-                    labelText: AppLocalizations.of(context)!.enterEmail,
+                    hintText: AppLocalizations.of(context)!.enterEmail,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.email),
                   ),
                 ),
                 const SizedBox(height: 33),
-                TextField(
+                TextFormField(
                   keyboardType: TextInputType.text,
                   decoration: decorationTextFiled.copyWith(
-                    labelText: AppLocalizations.of(context)!.password,
+                    hintText: AppLocalizations.of(context)!.password,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
                       ),
                       onPressed: _togglePasswordVisibility,
                     ),
