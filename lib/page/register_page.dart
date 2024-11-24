@@ -60,46 +60,23 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: false,
                   decoration: decorationTextFiled.copyWith(
                     hintText: AppLocalizations.of(context)!.enterUserName,
-
                     prefixIcon: const Icon(Icons.person_rounded),
-          
                   ),
                 ),
                 const SizedBox(
                   height: 33,
                 ),
 
-                Row(
-                  children: [
-                    Container(
-                      width: 150,
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        obscureText: false,
-                        decoration: decorationTextFiled.copyWith(
-                          hintText: AppLocalizations.of(context)!.enterFirstName,
-                          prefixIcon: const Icon(Icons.first_page),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 150,
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        obscureText: false,
-                        decoration: decorationTextFiled.copyWith(
-                          hintText: AppLocalizations.of(context)!.enterLastName,
-
-                          prefixIcon: const Icon(Icons.last_page),
-
-                        ),
-                      ),
-                    ),
-                  ],
+                TextField(
+                  keyboardType: TextInputType.text,
+                  obscureText: false,
+                  decoration: decorationTextFiled.copyWith(
+                    hintText: AppLocalizations.of(context)!.enterFirstName,
+                    prefixIcon: const Icon(Icons.person_pin_rounded),
+                  ),
                 ),
+
+
                 const SizedBox(
                   height: 33,
                 ),
@@ -108,9 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: decorationTextFiled.copyWith(
-                    labelText:AppLocalizations.of(context)!.enterEmail,
-
-                    border: const OutlineInputBorder(),
+                    hintText: AppLocalizations.of(context)!.enterEmail,
                     prefixIcon: const Icon(Icons.email),
                   ),
                 ),
@@ -118,8 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextField(
                   keyboardType: TextInputType.text,
                   decoration: decorationTextFiled.copyWith(
-                    labelText: AppLocalizations.of(context)!.password,
-                    border: const OutlineInputBorder(),
+                    hintText: AppLocalizations.of(context)!.password,
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(

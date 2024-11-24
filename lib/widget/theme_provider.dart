@@ -24,12 +24,6 @@ class ThemeProvider with ChangeNotifier {
   }
 }
 
-final ThemeData lightMode = ThemeData(
-  brightness: Brightness.light,
-  colorScheme: ColorScheme.light(),
-);
+final ThemeData lightMode = kLightMode;
 
-final ThemeData darkMode = ThemeData(
-  brightness: Brightness.dark,
-  colorScheme: ColorScheme.dark(),
-);
+final ThemeData darkMode = kDarkMode;

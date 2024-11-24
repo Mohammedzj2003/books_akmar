@@ -9,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -22,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<Story> _storyList = Story.storyList;
 
-
     return Scaffold(
       //Navigtor Drower
       drawer: NavdrowerWidget(),
@@ -32,20 +30,16 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(color: Colors.white70),
         ),
         backgroundColor: Color(0xff283E50),
+        surfaceTintColor: Colors.transparent,
         leading: Builder(
-          builder: (context) => GestureDetector(
-            onTap: () {
-              Scaffold.of(context).openDrawer();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: SvgPicture.asset(
-                'icons/vector.svg',
-                width: 5,
-                height: 5,
-              ),
-            ),
-          ),
+          builder: (context) {
+            return IconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              icon: SvgPicture.asset('icons/vector.svg'),
+            );
+          }
         ),
         actions: [
           GestureDetector(
@@ -58,8 +52,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            child: Container(
-              margin: EdgeInsets.only(top: 8, right: 12),
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(end: 10),
               child: CircleAvatar(
                 radius: 17,
                 backgroundImage: AssetImage(
@@ -68,9 +62,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(
-            width: 20,
-          )
         ],
       ),
       body: SingleChildScrollView(
@@ -80,29 +71,24 @@ class _HomePageState extends State<HomePage> {
             Container(
               color: Color(0xff283E50),
               child: Container(
-                height: 170,
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            children: [
-                              Text(AppLocalizations.of(context)!.hi,
-                                  style: TextStyle(color: Colors.white, fontSize: 25)),
-                              Text(
-                                'Mohammed',
-                                style: TextStyle(color: Colors.white, fontSize: 25),
-                              ),
-                            ],
-                          )),
-
+                    Row(
+                      children: [
+                        Text(AppLocalizations.of(context)!.hi,
+                            style: TextStyle(
+                                color: Colors.white, fontSize: 25)),
+                        Text(
+                          'Mohammed',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 25),
+                        ),
+                      ],
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SizedBox(
-                          width: 20,
-                        ),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16.0,
@@ -119,11 +105,12 @@ class _HomePageState extends State<HomePage> {
                                   Icons.search,
                                   color: Colors.black54.withOpacity(.5),
                                 ),
-                                 Expanded(
+                                Expanded(
                                   child: TextField(
                                     showCursor: false,
                                     decoration: InputDecoration(
-                                      hintText: AppLocalizations.of(context)!.search,
+                                      hintText:
+                                          AppLocalizations.of(context)!.search,
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
                                     ),
@@ -137,15 +124,14 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-
-
                         Dialogfilter(),
                         SizedBox(
                           width: 5,
                         ),
                         IconButton(
                           onPressed: () {
-                            SecondDialog.showSecondDialog(context);                          },
+                            SecondDialog.showSecondDialog(context);
+                          },
                           icon: Icon(
                             Icons.filter_alt_outlined,
                             color: Colors.white,
@@ -192,6 +178,7 @@ class _HomePageState extends State<HomePage> {
             ),
             GridView.builder(
                 shrinkWrap: true,
+                primary: false,
                 itemCount: _storyList.length,
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 200,

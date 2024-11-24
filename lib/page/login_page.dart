@@ -1,10 +1,10 @@
 import 'package:book_akmar/page/Forget%20Password/forgetPass_Page.dart';
 import 'package:book_akmar/page/register_page.dart';
 import 'package:book_akmar/page/welcome_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../shared/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -35,22 +35,22 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 200,
                 ),
-                   Row(
-                     children: [
-                       Text(
-                        AppLocalizations.of(context)!.welcomeBack,
-                        textDirection: TextDirection.ltr,
-                        style: const TextStyle(
-                          color: Color(0xff283E50),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                                         ),
-                       SizedBox(
-                         width: 20,
-                       ),
-                     ],
-                   ),
+                Row(
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.welcomeBack,
+                      textDirection: TextDirection.ltr,
+                      style: const TextStyle(
+                        color: Color(0xff283E50),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
 
                 const SizedBox(
                   height: 33,
@@ -83,15 +83,13 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: Alignment.topRight,
                   child: TextButton(
                       onPressed: () {
-                        Navigator
-                            .pushReplacement(context, MaterialPageRoute(builder: (context)
-                        =>
-                        const ForgetPassPage()
-                        ,
-                        )
-                        );
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ForgetPassPage(),
+                            ));
                       },
-                      child:  Text(
+                      child: Text(
                         AppLocalizations.of(context)!.forgetPassword,
                         style: TextStyle(
                           color: Colors.blue,
@@ -109,13 +107,11 @@ class _LoginPageState extends State<LoginPage> {
                   child: GestureDetector(
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator
-                            .pushReplacement(context, MaterialPageRoute(builder: (context)
-                        =>
-                        const WelcomePage()
-                        ,
-                        )
-                        );
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const WelcomePage(),
+                            ));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xff283E50),
@@ -127,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 40, vertical: 20),
                       ),
-                      child:  Text(
+                      child: Text(
                         AppLocalizations.of(context)!.next,
                         style: TextStyle(
                           color: Colors.white,
@@ -141,25 +137,29 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 33,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //have account
-                     Text(AppLocalizations.of(context)!.haveNotAccount,
-                        style: TextStyle(fontSize: 10, color: Color(0xff283E50))),
-                    //Sign Up
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const RegisterPage()));
-                      },
-                      child:  Text(
-                        AppLocalizations.of(context)!.signUp,                        style: TextStyle(color: Colors.blue, fontSize: 10),
+                Text.rich(
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: AppLocalizations.of(context)!.haveNotAccount,
                       ),
-                    ),
-                  ],
+                      TextSpan(text: ' '),
+                      TextSpan(
+                          text: AppLocalizations.of(context)!.signUp,
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterPage()));
+                            })
+                    ],
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
@@ -174,9 +174,11 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const WelcomePage()));
-                    } ,
-                    child:  Text(AppLocalizations.of(context)!.guest,
-                    style: TextStyle(color: Colors.blue, fontSize: 15),),
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.guest,
+                      style: TextStyle(color: Colors.blue, fontSize: 15),
+                    ),
                   ),
                 ),
 

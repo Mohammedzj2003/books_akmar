@@ -40,6 +40,8 @@ class StoryWidget extends StatelessWidget {
                 fontSize: 18,
                 color: Colors.black,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
