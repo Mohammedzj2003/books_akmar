@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "902406455052",
+    "project_id": "books-akmar",
+    "storage_bucket": "books-akmar.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902406455052:android:fc1cb482eab7af9ab75329",
+        "android_client_info": {
+          "package_name": "com.example.book_akmar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqN1XwiyPDlTAjVv6Yp4yQNXEY-ECPGiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
