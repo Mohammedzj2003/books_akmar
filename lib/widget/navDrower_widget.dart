@@ -204,7 +204,7 @@ Widget buildMenuItem(BuildContext context) => Container(
 
       ListTile(
         leading: const Icon(Icons.question_mark),
-        title: Text(AppLocalizations.of(context)!.whoAreWe,),
+        title: Text(AppLocalizations.of(context)!.aboutUs,),
         onTap: () {
           Navigator.pushReplacement(
               context,

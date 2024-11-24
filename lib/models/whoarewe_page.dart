@@ -1,9 +1,10 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:book_akmar/widget/navDrower_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class WhoAreWePage extends StatelessWidget {
   const WhoAreWePage({super.key});
@@ -22,7 +23,7 @@ class WhoAreWePage extends StatelessWidget {
       drawer: NavdrowerWidget(),
       appBar: AppBar(
         title: Text(
-          'Who Are We?',
+          AppLocalizations.of(context)!.aboutUs,
           style: TextStyle(color: Colors.white70),
         ),
         backgroundColor: Color(0xff283E50),
@@ -49,27 +50,32 @@ class WhoAreWePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'About Us',
+              AppLocalizations.of(context)!.aboutUs,
+                overflow: TextOverflow.fade,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold , color: Color(0xff283E50)),
               ),
               SizedBox(height: 16),
               Text(
-                'We are a team of passionate developers dedicated to creating amazing applications. Our mission is to provide high-quality software solutions that meet the needs of our users.',
+                AppLocalizations.of(context)!.aboutUsDec,
+                overflow: TextOverflow.fade,
                 style: TextStyle(fontSize: 16,color: Color(0xae020202)),
               ),
               SizedBox(height: 16),
               Text(
-                'Our Team',
+                AppLocalizations.of(context)!.ourTeam,
+                overflow: TextOverflow.fade,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xff283E50)),
               ),
               SizedBox(height: 16),
               Text(
-                'Our team consists of experienced developers, designers, and project managers who work together to deliver the best possible products.',
+                AppLocalizations.of(context)!.ourTeamDec,
+                overflow: TextOverflow.fade,
                 style: TextStyle(fontSize: 16,color: Color(0xae020202)),
               ),
               SizedBox(height: 32),
               Text(
-                'Contact Us',
+                  AppLocalizations.of(context)!.contactUs,
+                overflow: TextOverflow.fade,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xff283E50)),
               ),
               SizedBox(height: 16),
@@ -80,6 +86,8 @@ class WhoAreWePage extends StatelessWidget {
                     Image.network("https://img.icons8.com/3d-fluency/94/google-logo.png",width: 20,height: 20,),
                     Text(
                       '  : q2df2003@gmail.com',
+                      overflow: TextOverflow.fade,
+
                       style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ],
@@ -93,6 +101,8 @@ class WhoAreWePage extends StatelessWidget {
                     Image.network("https://img.icons8.com/color/48/whatsapp--v1.png",width: 25,height: 25,),
                     Text(
                       '  : +97059-223-8378',
+                      overflow: TextOverflow.fade,
+
                       style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ],
@@ -106,6 +116,8 @@ class WhoAreWePage extends StatelessWidget {
                     Image.network("https://img.icons8.com/3d-fluency/94/instagram-logo.png",height: 25,width: 25,),
                     Text(
                       '  : @q_2df',
+                      overflow: TextOverflow.fade,
+
                       style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ],
