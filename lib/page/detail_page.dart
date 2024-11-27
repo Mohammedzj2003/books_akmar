@@ -1,8 +1,9 @@
 import 'package:book_akmar/models/storys.dart';
 import 'package:book_akmar/page/chat_page.dart';
+import 'package:book_akmar/widget/dialogFilter.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailPage extends StatefulWidget {
   final int storyId;
@@ -17,6 +18,10 @@ class _DetailPageState extends State<DetailPage> {
   //Toggle Favorite button
   bool toggleIsFavorated(bool isFavorited) {
     return !isFavorited;
+  }
+
+  bool toggleIsList(bool isList) {
+    return !isList;
   }
 
   @override
@@ -82,6 +87,9 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 Image.asset(
                   currentStory.imageURL,
+                  fit: BoxFit.cover,
+                  height: 150,
+                  width: 150,
                 ),
                 SizedBox(
                   width: 10,
@@ -89,7 +97,7 @@ class _DetailPageState extends State<DetailPage> {
                 Text(
                   currentStory.plantName,
                   style: const TextStyle(
-                    color: Colors.blue,
+                    color: Color(0xff283E50),
                     fontWeight: FontWeight.bold,
                     fontSize: 30.0,
                   ),
@@ -139,13 +147,9 @@ class _DetailPageState extends State<DetailPage> {
                     IconButton(
                         onPressed: () {
                           setState(() {
-                            bool isFavorited = toggleIsFavorated(currentStory.isFavorated);
+                            bool isFavorited =
+                            toggleIsFavorated(currentStory.isFavorated);
                             currentStory.isFavorated = isFavorited;
-                            if (isFavorited) {
-                              Provider.of<FavoriteStoriesProvider>(context, listen: false).addStory(currentStory);
-                            } else {
-                              Provider.of<FavoriteStoriesProvider>(context, listen: false).removeStory(currentStory);
-                            }
                           });
                         },
                         icon: Icon(
@@ -156,7 +160,7 @@ class _DetailPageState extends State<DetailPage> {
                           color: Colors.red,
                         )),
                     Text(
-                      'Favorite',
+                      AppLocalizations.of(context)!.favorite,
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
@@ -166,19 +170,18 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 Column(
                   children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    const Icon(
-                      Icons.stars_outlined,
-                      size: 30.0,
-                      color: Colors.black26,
-                    ),
-                    SizedBox(
-                      height: 12,
+                    IconButton(
+                      icon: const Icon(
+                        Icons.stars_outlined,
+                        size: 30.0,
+                        color: Colors.black26,
+                      ),
+                      onPressed: () {
+                        thirdDialog.showRatingDialog(context);
+                      },
                     ),
                     Text(
-                      'Rating',
+                      AppLocalizations.of(context)!.rating,
                       style: const TextStyle(
                         fontSize: 20.0,
                       ),
@@ -190,19 +193,23 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 Column(
                   children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    const Icon(
-                      Icons.add_box_outlined,
-                      size: 30.0,
-                      color: Colors.black26,
-                    ),
-                    SizedBox(
-                      height: 12,
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          bool isList = toggleIsFavorated(currentStory.isList);
+                          currentStory.isList = isList;
+                        });
+                      },
+                      icon: Icon(
+                        size: 30.0,
+                        currentStory.isList == true
+                            ? Icons.add_box_outlined
+                            : Icons.verified,
+                        color: Colors.blueAccent,
+                      ),
                     ),
                     Text(
-                      'Add List',
+                      AppLocalizations.of(context)!.addList,
                       style: const TextStyle(
                         fontSize: 20.0,
                       ),
@@ -229,46 +236,34 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 100,
-            ),
-            SizedBox(
-              width: size.width * .9,
-              height: 50,
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xff283E50),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: const Offset(0, 1),
-                              blurRadius: 5,
-                              color: Colors.blue.withOpacity(.3),
-                            )
-                          ]),
-                      child: const Center(
-                        child: Text(
-                          'Read Now',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+
           ],
         ),
       ),
+      bottomSheet: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+        height: 55,
+        decoration: BoxDecoration(
+            color: Color(0xff283E50),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, 1),
+                blurRadius: 5,
+                color: Colors.blue.withOpacity(.3),
+              )
+            ]),
+        child: const Center(
+          child: Text(
+            'Read Now',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20.0,
+            ),
+          ),
+        ),
+      ),
+
     );
   }
 }
@@ -285,6 +280,22 @@ class FavoriteStoriesProvider with ChangeNotifier {
 
   void removeStory(Story story) {
     _favoriteStories.remove(story);
+    notifyListeners();
+  }
+}
+
+class ListStoriesProvider with ChangeNotifier {
+  List<Story> _listStories = [];
+
+  List<Story> get favoriteStories => _listStories;
+
+  void addStory(Story story) {
+    _listStories.add(story);
+    notifyListeners();
+  }
+
+  void removeStory(Story story) {
+    _listStories.remove(story);
     notifyListeners();
   }
 }

@@ -45,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
+                      overflow: TextOverflow.fade,
                     ),
                     SizedBox(
                       width: 20,

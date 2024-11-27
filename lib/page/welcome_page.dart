@@ -15,21 +15,25 @@ class WelcomePage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                      onPressed: (){
-                        Navigator
-                            .pushReplacement(context, MaterialPageRoute(builder: (context)
-                        =>
-                        const HomePage()
-                          ,
-                        )
-                        );
-                      },
-                      icon: Icon(Icons.navigate_before_outlined,size: 40,)
-                  ),
-                ),
+                     Row(
+                       children: [
+                         SizedBox(
+                           width: 10,
+                         ),
+                         IconButton(
+                          onPressed: (){
+                            Navigator
+                                .pushReplacement(context, MaterialPageRoute(builder: (context)
+                            =>
+                            const HomePage()
+                              ,
+                            )
+                            );
+                          },
+                          icon: Icon(Icons.dangerous_outlined,size: 35,color: Colors.black54,)
+                                           ),
+                       ],
+                     ),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
